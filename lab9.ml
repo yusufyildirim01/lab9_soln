@@ -26,7 +26,7 @@ according to the semantic rules presented in Chapter 13.
 Before beginning, what should this expression evaluate to? Test out
 your prediction in the OCaml REPL. *)
 
-(* ANSWER: The expression evaluates to 36:
+(* SOLUTION: The expression evaluates to 36:
 
     # let x = 3 + 5 in
         (fun x -> x * x) (x - 2)  ;;
@@ -41,17 +41,31 @@ exercises.
 By way of example, we do the first couple of exercises for you to give
 you the idea.
 
+    ******************************************************************
+    Note: When we ask for a derivation using a particular set of rules
+    -- such as the substitution rules in Figure 13.4 or the semantic
+    rules in Figure 13.5 -- the derivation should be explicit about
+    that particular set of rules, but should not explicitly show the
+    use of any other rules. For instance, in Exercise 3, the solution
+    shows the semantic rules (Figure 13.5) in the derivation
+    explicitly. Implicitly, it's making use of the substitution rules
+    (Figure 13.4) by its appeal to Exercise 2.
+    ******************************************************************
+
 ......................................................................
 Exercise 1. Carry out the derivation for the semantics of the
 expression `3 + 5`, using the semantics rules in Figure 13.5.
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
     3 + 5 ⇓
           | 3 ⇓ 3          (R_int)
           | 5 ⇓ 5          (R_int)
           ⇓ 8              (R_+)
+
+   (We try to mimic the notation for semantic rules and derivations
+   from the textbook, but the appearance is imperfect.)
 
    This derivation was actually given in the reading in Section
    13.1. We've annotated each line with the semantic rule that it
@@ -65,7 +79,7 @@ to the definition in Figure 13.4?
     (x + 5) [x ↦ 3]
 ....................................................................*)
 
-(* ANSWER: Carrying out each step in the derivation:
+(* SOLUTION: Carrying out each step in the derivation:
 
     (x + 5) [x ↦ 3]
         = x [x ↦ 3] + 5 [x ↦ 3]      (by 13.10)
@@ -94,7 +108,7 @@ expression `let x = 3 in x + 5`, using the semantics rules in Figure
 13.5.
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
     let x = 3 in x + 5 ⇓
                        | 3 ⇓ 3          (R_int)
@@ -112,7 +126,7 @@ Exercise 4. Carry out the derivation for the semantics of the
 expression `8 - 2`, using the semantics rules in Figure 13.5.
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
     8 - 2 ⇓
           | 8 ⇓ 8         (R_int)
@@ -125,7 +139,7 @@ Exercise 5. Carry out the derivation for the semantics of the
 expression `6 * 6`, using the semantics rules in Figure 13.5.
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
     6 * 6 ⇓
           | 6 ⇓ 6          (R_int)
@@ -139,7 +153,7 @@ to the definition in Figure 13.4?
     (x * x) [x ↦ 6]
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
     (x * x) [x ↦ 6]
         = x [x ↦ 6] * x [x ↦ 6]     (by 13.10)
@@ -163,7 +177,7 @@ to the definition in Figure 13.4?
     ((fun x -> x * x) (x - 2)) [x ↦ 8]
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
     ((fun x -> x * x) (x - 2)) [x ↦ 8]
         = ((fun x -> x * x) [x ↦ 8]) ((x - 2) [x ↦ 8])    (by 13.11)
@@ -182,7 +196,7 @@ expression
 using the semantics rules in Figure 13.5.
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
     (fun x -> x * x) (8 - 2)
          ⇓         
@@ -201,7 +215,7 @@ the expression
 using the semantics rules in Figure 13.5.
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
     let x = 3 + 5 in (fun x -> x * x) (x - 2) 
          ⇓
@@ -237,7 +251,7 @@ in Section 13.3.2 of the textbook.)
 4. let x = fun y -> x in x
 ....................................................................*)
 
-(* ANSWER:
+(* SOLUTION:
 
 1. let x = 3 in let y = x in f x y
 
@@ -296,7 +310,7 @@ substitution given in the textbook, Figure 13.4.
 
 ....................................................................*)
 
-(* ANSWER: 
+(* SOLUTION: 
 
 1. (x + 1)[x ↦ 50]
       = x[x ↦ 50] + 1[x ↦ 50]         (by 13.10)
@@ -352,7 +366,7 @@ just use it directly.
 4. let x = 51 in let x = 124 in x 
 
 ......................................................................*)
-(* ANSWER:
+(* SOLUTION:
 
 1. 2 * 25 ⇓
           | 2 ⇓ 2              (R_int)
@@ -396,18 +410,18 @@ and arithmetic expressions. Recall the following syntax for such a
 language from the textbook.
 
 <binop> ::= + | - | * | /
-<var> ::= x | y | z | ...
-<expr> ::= <integer>
-        |  <var>
-        |  <expr1> <binop> <expr>
-        |  let <var> = <expr_def> in <expr_body> 
+<var>   ::= x | y | z | ...
+<expr>  ::= <integer>
+         |  <var>
+         |  <expr1> <binop> <expr>
+         |  let <var> = <expr_def> in <expr_body> 
 
 ......................................................................
-Exercise 14: We've provided below type definitions for expressions
-with this syntax. Augment the type definitions to allow for other
-binary operations (at least Minus and Times) and for unary operations
-(at least Negate). Hint: Don't forget to extend the type definition of
-expr to support unary operations as well.
+Exercise 14: We've provided below type definitions that allow for
+expressions implementing this syntax. Augment the type definitions to
+allow for other binary operations (at least `Minus` and `Times`) and
+for unary operations (at least Negate). Hint: Don't forget to extend
+the type definition of `expr` to support unary operations as well.
 
 When you're done, you should be able to specify expressions such as
 the following:
@@ -449,10 +463,11 @@ The free variable rules in this simple language are a subset of those
 found in Figure 13.4, but we encourage you to first try to determine
 the rules on your own, consulting the textbook only as necessary.
 
-You'll need to use the `Set` module for this exercise to complete the
-definition of the `VarSet` module by using the `Set.Make`
-functor. More documentation on the `Set` module can be found at
-<https://caml.inria.fr/pub/docs/manual-ocaml/libref/Set.html>.
+To handle all of the set processing in the free variable rules --
+unions and differences and so on -- we've provided a `VarSet` module
+built using OCaml's `Set.Make` functor. (More documentation on the
+`Set.Make` functor can be found at
+<https://v2.ocaml.org/api/Set.Make.html>.)
 
 You should get behavior such as this, in calculating the free
 variables in the expression
