@@ -452,7 +452,8 @@ type expr =
   | Var of varspec
   | Binop of binop * expr * expr
   | Unop of unop * expr
-  | Let of varspec * expr * expr ;;
+  | Let of varspec * expr * expr 
+;;
 
 (*....................................................................
 Exercise 15: Write a function `free_vars : expr -> varspec Set.t` that
