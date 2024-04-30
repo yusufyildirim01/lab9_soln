@@ -29,7 +29,9 @@ let gen_of_list (lst : 'a list) : unit -> 'a =
   | [] -> raise NoMore
   | fst :: tail -> 
     store := tail; 
-  fst ;;
+  fst ;; 
 
-let x = ref 3 in x := !x * 14
+let x = ref 3 in x := !x * 1
+
+guh 
 
