@@ -76,7 +76,7 @@ expression `3 + 5`, using the semantics rules in Figure 13.5.
 Exercise 2. What is the result of the following substitution according
 to the definition in Figure 13.4?
 
-    (x + 5) [x ↦ 3]
+    (x + 5) [x ↦ 3] 
 ....................................................................*)
 
 (* SOLUTION: Carrying out each step in the derivation:
